@@ -1,6 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { CodePipeline, CodePipelineSource, ShellStep, Step } from 'aws-cdk-lib/pipelines';
+import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 
 export class CdkCicdPipelineStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -10,9 +10,7 @@ export class CdkCicdPipelineStack extends Stack {
             pipelineName: 'TestPipeline',
             synth: new ShellStep('Synth', {
                 input: CodePipelineSource.gitHub('thabo-lebelo/cdk-cicd-pipeline', 'main'), 
-                commands: ['npm ci',
-                    'npm run build',
-                    'npx cdk synth']
+                commands: ['npm ci', 'npm run build', 'npx cdk synth']
             })
         });
     }
