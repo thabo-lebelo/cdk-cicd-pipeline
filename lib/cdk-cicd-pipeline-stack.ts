@@ -17,7 +17,7 @@ export class CdkCicdPipelineStack extends Stack {
         });
 
         const testingStage = pipeline.addStage(new PipelineAppStage(this, "test", {
-            env: { account: "737327749629", region: "us-east-1" }
+            env: { account: "your_account_id", region: "us-east-1" }
         }));
 
 
@@ -25,7 +25,7 @@ export class CdkCicdPipelineStack extends Stack {
         testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
 
         const prodStage = pipeline.addStage(new PipelineAppStage(this, "prod", {
-            env: { account: "737327749629", region: "us-east-1" }
+            env: { account: "your_account_id", region: "us-east-1" }
         }));
     }
 }
